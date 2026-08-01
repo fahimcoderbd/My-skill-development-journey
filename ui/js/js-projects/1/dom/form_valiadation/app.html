@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Form Validation</title>
+</head>
+<body>
+  <h2>Login Form</h2>
+  <form onsubmit="return validateForm()">
+    <label>Email:</label>
+    <input type="text" id="email"><br><br>
+    
+    <label>Password:</label>
+    <input type="password" id="password"><br><br>
+    
+    <button type="submit">Login</button>
+  </form>
+
+  <p id="error" style="color:red;"></p>
+
+  <script>
+    function validateForm() {
+      let email = document.getElementById("email").value;
+      let password = document.getElementById("password").value;
+      let error = document.getElementById("error");
+
+      if (email === "" || password === "") {
+        error.textContent = "❌ Please fill in all fields!";
+        return false; // stop form submission
+      } else {
+        error.textContent = "✅ Login Successful!";
+        return false; // prevent reload (for demo)
+      }
+    }
+  </script>
+</body>
+</html>

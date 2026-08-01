@@ -1,0 +1,42 @@
+{% extends 'books_app/base.html' %}
+{% block title %}Adding books to authors{% endblock %}
+
+{# Include Tailwind via CDN for this template #}
+<script src="https://cdn.tailwindcss.com"></script>
+
+{% block main %}
+    <div class="min-h-screen flex items-center justify-center px-4 py-10 bg-gradient-to-br from-slate-950 via-violet-950 to-fuchsia-900">
+        <div class="relative w-full max-w-3xl p-6 rounded-[2rem] border border-white/20 bg-white/10 backdrop-blur-xl shadow-2xl shadow-violet-950/40 overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(139,92,246,0.35),_transparent_25%),radial-gradient(circle_at_bottom_right,_rgba(236,72,153,0.2),_transparent_20%)]"></div>
+            <div class="relative">
+                <h1 class="text-white text-3xl font-semibold mb-6 text-center">Adding books to authors</h1>
+
+                <form method="POST" action="" class="relative bg-white/15 border border-white/25 rounded-[1.75rem] px-8 pt-6 pb-8 mb-4 shadow-inner shadow-white/10 backdrop-blur-lg">
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+                        <label for="author" class="block text-white/85 text-sm font-semibold mb-2">Select Author:</label>
+                        <select name="author" id="author" class="w-full rounded-2xl border border-white/20 bg-white/80 py-2 px-3 text-slate-950 shadow-sm focus:border-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-200">
+                            {% for author in authors %}
+                                <option value="{{ author.id }}">{{ author.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="books" class="block text-white/85 text-sm font-semibold mb-2">Select Books:</label>
+                        <select name="book" id="books" multiple class="w-full rounded-2xl border border-white/20 bg-white/80 py-2 px-3 text-slate-950 h-40 shadow-sm focus:border-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-200">
+                            {% for book in books %}
+                                <option value="{{ book.id }}">{{ book.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <button type="submit" class="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-violet-500 to-fuchsia-500 px-6 py-2 text-white font-bold shadow-lg shadow-fuchsia-500/20 transition hover:from-violet-600 hover:to-fuchsia-600 focus:outline-none focus:ring-2 focus:ring-violet-300">Add Books</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "article_app/base.html" %}
+
+{% block title %}Delete Article{% endblock %}
+
+{% block main %}
+<div class="max-w-lg mx-auto mt-10">
+    
+    <div class="bg-white rounded-2xl shadow-lg border-t-4 border-red-500 overflow-hidden text-center">
+        
+        <div class="p-8">
+            
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-6">
+                <i class="fa-solid fa-triangle-exclamation text-red-600 text-2xl"></i>
+            </div>
+            
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Confirm Deletion</h3>
+            
+            <p class="text-gray-600 mb-6">
+                Are you sure you want to permanently delete the article:<br>
+                <span class="font-bold text-gray-900 mt-2 block px-4 py-2 bg-gray-50 rounded-lg">"{{ article.title }}"</span>
+            </p>
+            
+            <p class="text-sm text-red-500 mb-8 font-medium">
+                This action cannot be undone.
+            </p>
+
+            <form method="POST" class="flex flex-col sm:flex-row justify-center gap-3">
+                {% csrf_token %}
+                <a href="{% url 'show_articles' %}" class="w-full sm:w-auto px-6 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors">
+                    Cancel Keep It
+                </a>
+                <button type="submit" class="w-full sm:w-auto px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-trash-can"></i> Yes, Delete
+                </button>
+            </form>
+            
+        </div>
+        
+    </div>
+    
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+</head>
+<body>
+    <h1>To-Do List App</h1>
+
+    <script>
+        // Object to store to-dos
+        let todos = {};
+
+        // Function to add a to-do
+        const addTodo = (task) => {
+            // Generate an ID for the task
+            const id = Date.now(); // unique id based on time
+
+            // Save the task in the todos object
+            todos[id] = {
+                task: task,
+                completed: false
+            };
+        }
+
+        // Function to display all todos
+        const showTodos = () => {
+            let result = "<h2>Your To-Dos:</h2><ul>";
+            for (let id in todos) {
+                const status = todos[id].completed ? "✅" : "❌";
+                result += `<li>${status} ${todos[id].task}</li>`;
+            }
+            result += "</ul>";
+            document.body.innerHTML += result;
+        }
+
+        // Ask the user to add multiple todos
+        let addMore = true;
+        while(addMore) {
+            const todoInput = prompt("Enter your To-Do (or leave empty to finish):");
+
+            if (todoInput === null || todoInput.trim() === "") {
+                addMore = false; // stop asking
+            } else {
+                addTodo(todoInput.trim());
+            }
+        }
+
+        // Display all todos
+        showTodos();
+    </script>
+</body>
+</html>

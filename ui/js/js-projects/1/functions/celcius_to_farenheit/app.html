@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+</head>
+
+<body
+    style="font-family: Arial, sans-serif; background:#f4f4f4; display:flex; justify-content:center; align-items:center; height:100vh;">
+
+    <div
+        style="background:#fff; padding:20px; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.2); text-align:center; width:300px;">
+
+        <!-- showing result -->
+        <div id="result" style="font-size:20px; margin-bottom:15px; color:#333; font-weight:bold;">
+            Final Result:
+        </div>
+
+        <!-- taking celsius -->
+        <input id="celcius_input" placeholder="Enter Celsius"
+            style="padding:10px; width:90%; border:1px solid #ccc; border-radius:8px; margin-bottom:10px; font-size:16px;">
+
+        <button type="submit" id="submit"
+            style="padding:10px 20px; background:#4CAF50; color:#fff; border:none; border-radius:8px; font-size:16px; cursor:pointer;">
+            Calculate
+        </button>
+
+    </div>
+
+    <script>
+        // result 
+        const result = document.getElementById("result");
+        // user celcius input
+        const celcius = document.getElementById("celcius_input");
+        // user submit button
+        const submit = document.getElementById("submit");
+
+        const converter = (cel, res) => {
+            const fahrenheit = (parseFloat(cel) * 9 / 5) + 32;
+            res.innerText = `Final Result: ${cel}°C = ${fahrenheit.toFixed(2)}°F`;
+        }
+
+        // event listener
+        submit.addEventListener("click", () => {
+            if (celcius.value === "" || isNaN(celcius.value)) {
+                result.innerText = "❌ Please enter a valid number!";
+            } else {
+                converter(celcius.value, result);
+            }
+        });
+    </script>
+</body>
+
+</html>

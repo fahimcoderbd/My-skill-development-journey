@@ -1,0 +1,49 @@
+body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color:rgba(238, 130, 238, 0.252);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+.profile-card{
+    height:300px;
+    width:500px;
+    background:lightblue;
+    border-radius:20px;
+    margin:50px auto;
+    padding:40px;
+    text-align:center;
+   box-shadow:0 4px 15px rgba(0,0,0,0.3);
+}
+
+.profile-card img{
+    height:100px;
+    width:100px;
+    border-radius:50%;
+}
+
+.profile-card button{
+    background:black;
+    border-radius:20px;
+    height:40px;
+    width:100px;
+    color:white;
+    transition-duration: 0.4s;
+    cursor:pointer;
+}
+.profile-card button:hover{
+    background-color:white;
+    color:black;
+}
+
+.info-frame{
+    background-color:whitesmoke;
+    border-radius:20px;
+    padding:30px;
+    margin:30px;
+}
+

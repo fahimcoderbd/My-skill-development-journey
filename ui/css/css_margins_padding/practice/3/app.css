@@ -1,0 +1,27 @@
+body{
+    display:flex;
+    gap:50px;
+    justify-content:center;
+}
+
+.box1{
+    width:400px;
+    height:200px;
+    background: linear-gradient(135deg, #94a8ff 0%, #764ba2 100%);
+    padding:40px;
+    margin: 50px auto;
+    border-radius:30px;
+    text-align: center;
+    color:WHITE;
+}
+
+.box2{
+    width:400px;
+    height:200px;
+    background: linear-gradient(135deg, #94a8ff 0%, #764ba2 100%);
+    padding:40px;
+    margin: 50px auto;
+    border-radius:30px;
+    text-align: center;
+    color:WHITE;
+}

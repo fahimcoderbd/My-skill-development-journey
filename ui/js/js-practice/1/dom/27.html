@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom style</title>
+</head>
+<body>
+    <p id="text">Hellow world</p>
+    <button onclick="changestyle()">Chnage color</button>
+
+    <script>
+        function changestyle(){
+            let p = document.getElementById('text');
+
+            //chnage css dynamically
+            p.style.color = "purple";
+            p.style.fontSize = "24px";
+            p.style.backgroundColor = "whilesmoke";
+        }
+    </script>
+</body>
+</html>

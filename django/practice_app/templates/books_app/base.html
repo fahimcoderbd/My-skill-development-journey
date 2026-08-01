@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{%block title%}Homepage{%endblock%}</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        /* toast styles */
+        .toast-enter{animation:toast-in 360ms ease-out forwards;opacity:0;transform:translateY(-6px) scale(.98)}
+        .toast-exit{animation:toast-out 300ms ease-in forwards}
+        @keyframes toast-in{to{opacity:1;transform:none}}
+        @keyframes toast-out{to{opacity:0;transform:translateY(-6px) scale(.98)}}
+        .toast-container{border-radius:30px}
+    </style>
+</head>
+<body class="bg-black flex flex-col min-h-screen text-gray-800 font-sans antialiased">
+         <nav class="bg-indigo-600 shadow-md sticky top-0 z-50">
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="/" class="flex items-center gap-2 text-white font-bold text-xl hover:text-indigo-100 transition">
+                    <i class="fa-solid fa-newspaper"></i>
+                    Books App
+                </a>
+                
+                <div>
+                     <a href="/" class="inline-flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors duration-200">
+                        <i class="fa-solid fa-box mr-2"></i> Dashboard
+                    </a>
+
+                     <a href="/books/" class="inline-flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-colors duration-200">
+                        <i class="fa-solid fa-house mr-2"></i> Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+     <!--show messages-->
+        {% if messages %}
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-3">
+                {% for message in messages %}
+                    <div class="toast-container bg-white/95 border border-gray-200 text-gray-800 px-4 py-3 shadow-lg flex items-start gap-3 toast-enter" role="status" aria-live="polite">
+                        <div class="flex-shrink-0 text-indigo-600 mt-0.5">
+                            <i class="fa-solid fa-circle-info"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="font-semibold text-sm capitalize">{{ message.tags }}</div>
+                            <div class="text-sm">{{ message }}</div>
+                        </div>
+                        <button type="button" class="close-toast text-gray-500 hover:text-gray-700 ml-4 p-2 rounded-full" aria-label="Dismiss notification">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    {%block main%}
+
+    {%endblock%}
+    <script>
+        // close buttons and auto-dismiss
+        document.addEventListener('click', function(e){
+            if(e.target.closest('.close-toast')){
+                const t = e.target.closest('.toast-container');
+                if(t){ t.classList.remove('toast-enter'); t.classList.add('toast-exit'); setTimeout(()=>t.remove(),320); }
+            }
+        });
+        // auto dismiss after 6s
+        document.addEventListener('DOMContentLoaded', function(){
+            document.querySelectorAll('.toast-container').forEach(function(t){ setTimeout(()=>{ t.classList.remove('toast-enter'); t.classList.add('toast-exit'); setTimeout(()=>t.remove(),320); },6000); });
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-image:url("pic2.jpg");
+    height:100vh;
+    background-size:cover;
+}
+
+
+h3{
+    text-align:center;
+    background:transparent;
+    backdrop-filter:blur(10px);
+    color:black;
+    font-size:40px;
+    font-family:cursive , sans-serif;
+    font-style:italic;
+}
+
+.welcome-text{
+    color:white;
+    background:none;
+    text-align:center;
+    font-size:50px;
+}
+
+h2{
+    text-align:center;
+    color:skyblue;
+    font-size:40px;
+}
+
+div{
+    margin:60px auto;
+    background-color:rgba(0, 0, 0, 0.493);
+    backdrop-filter:blur(10px);
+    width:60vh;
+    padding:30px;
+    border-radius:20px;
+}

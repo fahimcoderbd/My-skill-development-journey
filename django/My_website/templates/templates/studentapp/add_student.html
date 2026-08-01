@@ -1,0 +1,129 @@
+{% extends 'templates/studentapp/base.html' %}
+{% load static %}
+
+{% block title %}Add New Student - Student Management{% endblock %}
+
+{% block main %}
+<div class="page-header">
+    <h1 class="page-title">➕ Add New Student</h1>
+    <p class="page-subtitle">Fill in the details below to add a new student</p>
+</div>
+
+<div class="grid grid-2" style="max-width: 700px;">
+    <div class="card">
+        <form method="POST" class="form-container" id="studentForm">
+            {% csrf_token %}
+
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="name">Student Name *</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    placeholder="Enter student's full name"
+                    required
+                    minlength="2"
+                    maxlength="100"
+                >
+                <small class="text-muted mt-1" style="display: block;">Max 100 characters</small>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="student@example.com"
+                    required
+                >
+                <small class="text-muted mt-1" style="display: block;">We'll use this to contact the student</small>
+            </div>
+
+            <!-- Age Field -->
+            <div class="form-group">
+                <label for="age">Age *</label>
+                <input 
+                    type="number" 
+                    id="age" 
+                    name="age" 
+                    placeholder="e.g., 18"
+                    required
+                    min="5"
+                    max="100"
+                >
+                <small class="text-muted mt-1" style="display: block;">Age between 5 and 100</small>
+            </div>
+
+            <!-- Class Field -->
+            <div class="form-group">
+                <label for="student_class">Class/Grade *</label>
+                <input 
+                    type="number" 
+                    id="student_class" 
+                    name="student_class" 
+                    placeholder="e.g., 10"
+                    required
+                    min="1"
+                    max="12"
+                >
+                <small class="text-muted mt-1" style="display: block;">Class/Grade number (1-12)</small>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="flex gap-2 mt-3">
+                <button type="submit" class="btn btn-primary btn-lg" style="flex: 1;">
+                    ✅ Add Student
+                </button>
+                <a href="/student" class="btn btn-outline btn-lg" style="flex: 1; text-align: center;">
+                    ❌ Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Info Card -->
+    <div class="card">
+        <h3 class="mb-2">💡 Quick Tips</h3>
+        <ul style="list-style: none; padding: 0;">
+            <li class="mb-2">
+                <strong>Name:</strong><br>
+                <span class="text-small text-muted">Use the student's full name</span>
+            </li>
+            <li class="mb-2">
+                <strong>Email:</strong><br>
+                <span class="text-small text-muted">Must be a valid email address</span>
+            </li>
+            <li class="mb-2">
+                <strong>Age:</strong><br>
+                <span class="text-small text-muted">Numeric value only</span>
+            </li>
+            <li class="mb-2">
+                <strong>Class:</strong><br>
+                <span class="text-small text-muted">Grade or class level (1-12)</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    document.getElementById('studentForm').addEventListener('submit', function(e) {
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        
+        if (!name) {
+            e.preventDefault();
+            alert('Please enter student name');
+            return;
+        }
+        
+        if (!email) {
+            e.preventDefault();
+            alert('Please enter a valid email');
+            return;
+        }
+    });
+</script>
+{% endblock %}

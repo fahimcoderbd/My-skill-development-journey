@@ -1,0 +1,82 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+h1{
+    color:white;
+    background:darkblue;
+    text-align:center;
+}
+
+h2{
+    text-transform:capitalize;
+    /* text-transform:lowercase;
+    text-transform:capitalize; */
+}
+
+p{
+    margin:20px;
+    letter-spacing:none; /* letter er maze 
+    space banate use korbo */
+    word-spacing:3px;
+    font-family: "Playwrite GB S Guides", cursive;
+    font-weight: 400;
+    font-style:normal;
+    font-size:20px;
+    line-height:25px;
+    text-align:justify;
+}
+
+a{
+    text-decoration:underline overline;
+}
+
+/* Text last align */
+.one{
+   
+    text-align-last:left;
+}
+
+/* Text align */
+.two{
+    text-align:center; 
+    color:blue;
+}
+
+
+/* Direction */
+.three{
+    direction:ltr;
+    text-align:center;
+    /* unicode-bidi:bidi-override */;
+}
+
+.baseline{
+    vertical-align:text-bottom;
+    border-radius: 50%;
+}
+
+.text-top{
+    vertical-align:text-top;
+    border-radius: 50%;
+}
+
+.text-bottom{
+    vertical-align:text-bottom;
+    border-radius: 50%;
+}
+
+.text-sub{
+    vertical-align:sub;
+    border-radius: 50%;
+}
+
+.text-super{
+    vertical-align:super;
+    border-radius: 50%;
+}
+
+.text-margin{
+    margin-top:30px;
+}

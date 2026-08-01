@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LocalStorage Example</title>
+</head>
+<body>
+    <h1>LocalStorage Demo</h1>
+    <p id="output"></p>
+
+    <h1>Session storage</h1>
+    <p id="output2"></p>
+
+    <script>
+        //localstorage and sessionstorage
+        //web storage api of js
+        //key-value pair akare data store kore
+
+        //localstorage
+        //data store kore browser e
+        //data store thake browser close korleo
+
+        //sessionstorage
+        //data store kore browser e
+        //data store thake browser close korle data delete hoye jay
+
+        //localstorage
+        localStorage.clear("name", "Fahim");
+        let getname = localStorage.getItem("name");
+        console.log(getname);
+
+        //sessionstorage
+        sessionStorage.clear("age", 16);
+        let getage = sessionStorage.getItem("age");
+        console.log(getage);
+
+        // Show in HTML
+        document.getElementById('output').textContent = "Name from localStorage: " + getname;
+        document.getElementById('output2').textContent = "Age from sessionStorage: " + getage;
+    </script>
+</body>
+</html>

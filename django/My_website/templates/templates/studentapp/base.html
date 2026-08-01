@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Student Management{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'studentapp/css/styles.css' %}">
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <h2>📚 Student Hub</h2>
+        <ul>
+            <li><a href="/student">Home</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- ALERTS -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- PAGE CONTENT -->
+        {% block main %}
+        {% endblock %}
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="{% static 'studentapp/js/app.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

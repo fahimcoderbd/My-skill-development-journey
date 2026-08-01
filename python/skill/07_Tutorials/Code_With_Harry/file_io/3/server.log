@@ -1,0 +1,6 @@
+[2026-04-09 10:00:01] [INFO] [AUTH] - User 'admin' logged in.
+[2026-04-09 10:05:22] [ERROR] [DB] - Connection timeout detected.
+[2026-04-09 10:06:45] [WARNING] [NETWORK] - High latency observed.
+[2026-04-09 10:10:12] [ERROR] [AUTH] - Invalid password attempt for 'user1'.
+[2026-04-09 10:12:05] [INFO] [UI] - Dashboard loaded in 200ms.
+[2026-04-09 10:15:30] [ERROR] [DB] - Query execution failed.

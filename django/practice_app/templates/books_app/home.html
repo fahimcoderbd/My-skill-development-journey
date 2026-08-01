@@ -1,0 +1,23 @@
+{%extends 'books_app/base.html'%}
+
+{%block main%}
+    <a href="{{routes.add_op}}" style="color:violet;
+        font-size:30px;margin:30px auto;">Add books</a>
+    <a href="{{routes.remove_op}}" style="color:violet;
+        font-size:30px;margin:30px auto;">Remove books</a>
+    <a href="{{routes.set_op}}" style="color:violet;
+        font-size:30px;margin:30px auto;">Set books</a>
+    <a href="{{routes.clear_op}}" style="color:violet;
+        font-size:30px;margin:30px auto;">Clear books</a>
+    <a href="{{routes.all_op}}" style="color:violet;
+        font-size:30px;margin:30px auto;">All books</a>
+
+    <hr>
+    <h3 style="color:white;text-align:center;">Filtering and object queries</h3>
+     <a href="{{routes.show_authors}}" style="color:violet;
+        font-size:30px;margin:30px auto;">All authors</a>
+     
+    <a href="{{routes.filter_author_data}}" style="color:violet;
+        font-size:30px;margin:30px auto;">Filter author</a>
+
+{%endblock%}

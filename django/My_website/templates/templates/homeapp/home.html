@@ -1,0 +1,67 @@
+{% extends 'templates/homeapp/base.html' %}
+
+{% block title %}Home | Fahim Abrar{% endblock %}
+
+{% block content %}
+<!-- Hero section introduces Fahim and his full-stack experience -->
+<section class="hero-section">
+  <div class="glass-panel hero-panel">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="hero-badge">Full-stack software developer</span>
+        <h1 class="hero-title">Hi, I’m Fahim Abrar — frontend and backend crafted with modern polish.</h1>
+        <p class="hero-text">I build smooth Django applications with clean CSS UI, modern JavaScript interactions, and responsive layouts designed for every screen.</p>
+        <div class="hero-actions">
+          <a href="/about/" class="button button-primary">About Fahim</a>
+          <a href="#features" class="button button-secondary">See skills</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-blob blob-left"></div>
+        <div class="hero-blob blob-right"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-inner">
+          <div class="feature-card feature-card-hero">
+            <h2>Smooth interactions</h2>
+            <p>Responsive animations and mobile-first structure keep the UI intuitive across every device.</p>
+          </div>
+          <div class="feature-grid">
+            <div class="glass-card feature-item">
+              <span class="feature-icon">✨</span>
+              <h3>Clean layout</h3>
+              <p>Space and hierarchy are balanced to highlight the most important content.</p>
+            </div>
+            <div class="glass-card feature-item">
+              <span class="feature-icon">⚡</span>
+              <h3>Fast setup</h3>
+              <p>CSS-first design keeps the experience simple and easy to maintain.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Feature overview section -->
+<section id="features" class="info-section">
+  <div class="feature-grid-three">
+    <article class="glass-card feature-block">
+      <span class="feature-index">1</span>
+      <h3>Responsive design</h3>
+      <p>Layouts adapt beautifully from narrow phones to large landscape screens.</p>
+    </article>
+    <article class="glass-card feature-block">
+      <span class="feature-index">2</span>
+      <h3>Interactive details</h3>
+      <p>Subtle motion and hover states elevate the page without overwhelming the user.</p>
+    </article>
+    <article class="glass-card feature-block">
+      <span class="feature-index">3</span>
+      <h3>Modern stack</h3>
+      <p>Django templating, CSS styling, and clean JavaScript combine for a polished front-end experience.</p>
+    </article>
+  </div>
+</section>
+{% endblock %}

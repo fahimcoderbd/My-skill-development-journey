@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Events in js</title>
+</head>
+<body>
+    <!--mouse events-->
+    <!--js will detect mouse activities from user 
+    then perform tasks based on that activities-->
+
+    <!--onclick-->
+    <button onclick="sir()" style="text-align: center;align-content: center;">Click me sir!</button>
+
+    <script>
+        function sir(){
+            let sir = prompt("Enter your name: ");
+
+            //showing the message
+            alert(`${sir} , Welcome Sir!`);
+        }
+    </script>
+
+    <!--onmousehover-->
+
+    <h2 onmouseover="change_color(this)" onmouseout="reset(this)">
+       Assalamualykum, I am Fahim!
+    </h2>
+
+    <script>
+        function change_color(el){
+            el.style.color = "purple";
+        } 
+        function reset(el){
+            el.style.color = "";
+        }
+    </script>
+</body>
+</html>

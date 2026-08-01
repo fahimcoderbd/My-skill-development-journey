@@ -1,0 +1,96 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    /* CHANGED: Swapped muted teal for a rich, deep slate dark background */
+    background:white; 
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+/* Navbar */
+nav{
+    height:70px;
+    /* CHANGED: Increased background opacity for sharper text contrast */
+    background:rgba(15, 23, 42, 0.85);
+    font-size:1.6rem;
+    font-weight:600;
+    align-items:center;
+    box-shadow:0 4px 15px rgba(0,0,0,0.4);
+}
+
+/* Card */
+div{
+    width:min(90%,500px);
+    margin:60px auto;
+    padding:35px;
+
+    /* CHANGED: Replaced 'transparent' with a solid dark grey to make text pop */
+    background:#1E293B; 
+
+    /* CHANGED: Made border slightly brighter for better definition */
+    border:1px solid rgba(255,255,255,.15); 
+    border-radius:20px;
+
+    color:#F8FAFC; /* CHANGED: Pure off-white for maximum legibility */
+    text-align:center;
+
+    display:grid;
+    place-items:center;
+    gap:15px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
+
+    transition:0.3s ease;
+}
+
+div:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,0.6);
+    /* CHANGED: Added a subtle glow effect on hover using the accent color */
+    border-color: #818CF8; 
+}
+
+/* Text */
+h1{
+    font-size:2rem;
+    margin-bottom:10px;
+    color:#FFFFFF; 
+}
+
+p{
+    font-size:1rem;
+    line-height:1.7;
+    /* CHANGED: Set color to a light silver and removed opacity for crisp rendering */
+    color:#E2E8F0; 
+}
+
+/* Button */
+button{
+    padding:12px 28px;
+    border:none;
+    border-radius:10px;
+    /* CHANGED: Vibrant vibrant indigo for a clear call-to-action */
+    background:#4F46E5; 
+    color:#FFFFFF;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    /* CHANGED: Inverts to a bright neon purple with white text on hover */
+    background-color:#6366F1;
+    color:#FFFFFF;
+    transform:scale(1.05);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+}

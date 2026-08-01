@@ -1,0 +1,42 @@
+{%extends 'books_app/base.html'%}
+
+{%block title%}All authors data{%endblock%}
+
+{%block main%}
+<div class="overflow-x-auto">
+  <table class="min-w-full divide-y divide-gray-200 bg-white shadow-sm">
+    <thead class="bg-gray-800">
+      <tr>
+        <th scope="col" class="px-6 py-3 text-left text-2xl font-medium uppercase tracking-wider text-white">
+          Author Name
+        </th>
+
+         <th scope="col" class="px-6 py-3 text-left text-2xl font-medium uppercase tracking-wider text-white">
+          Author ID
+        </th>
+
+           <th scope="col" class="px-6 py-3 text-left text-2xl font-medium uppercase tracking-wider text-white">
+          Author email
+        </th>
+
+           <th scope="col" class="px-6 py-3 text-left text-2xl font-medium uppercase tracking-wider text-white">
+          Author books
+        </th>
+
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      {% for author in authors %}
+      <tr class="bg-gray-50 hover:bg-gray-100">
+        <td class="px-6 py-4 text-2xl text-gray-900">{{ author.name }}</td>
+        <td class="px-6 py-4 text-2xl text-green-600">{{ author.id }}</td>
+        <td class="px-6 py-4 text-2xl text-blue-600">{{ author.contact }}</td>
+        {%for book in author.authors.all%}
+        <td class="px-6 py-4 text-2xl text-cyan-600">{{book.name }}</td>
+         {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{%endblock%}

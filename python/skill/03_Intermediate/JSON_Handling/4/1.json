@@ -1,0 +1,8 @@
+{
+  "students": [
+    {"name": "Rahim", "present": true},
+    {"name": "Karim", "present": false},
+    {"name": "Ayesha", "present": true},
+    {"name": "Fatima", "present": false}
+  ]
+}

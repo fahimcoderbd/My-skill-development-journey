@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard events</title>
+</head>
+<body>
+    <!--keydown-->
+    <!--fires when a key is pressed-->
+
+    <h2>Press any key on your keyboard</h2>
+    <p id="output"></p>
+
+    <script>
+        const output = document.getElementById('output');
+
+        //when a key pressed down
+        document.addEventListener("keydown" ,function(event){
+            output.innerText = `Key up: ${event.key};`
+        })
+
+        //keyup when is released
+        document.addEventListener("keyup" ,function(event){
+            output.innerText = `Key up: ${event.key}`;
+        })
+    </script>
+</body>
+</html>

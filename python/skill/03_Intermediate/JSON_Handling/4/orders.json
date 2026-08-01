@@ -1,0 +1,8 @@
+{
+  "orders": [
+    {"id": 1, "customer": "Rahim", "total": 500, "paid": true},
+    {"id": 2, "customer": "Karim", "total": 1200, "paid": false},
+    {"id": 3, "customer": "Ayesha", "total": 800, "paid": true},
+    {"id": 4, "customer": "Fatima", "total": 1500, "paid": false}
+  ]
+}

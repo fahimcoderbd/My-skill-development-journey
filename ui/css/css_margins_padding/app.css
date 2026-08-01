@@ -1,0 +1,34 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+.parent-div{
+    background-color:#e7eaf6;
+    width:300px;
+    margin-top:50px; /*top er dike margin dibe */
+    margin-bottom:20px;
+    padding-top:25px; /*div er vitor er content er top padding dibe*/
+
+    margin-left:50px; /* left side er dike margin dibe */
+    padding-left:25px; /*div er vitor er content er left padding dibe*/
+
+    padding:20px;
+    margin: 20px auto;
+}
+
+/* .child-div{
+    background-color:#a2a8d3;
+    margin-top:20px;
+    margin-left:20px;
+    padding-top:20px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-bottom:20px;
+} */
+
+.child-div{
+    background-color:#a2a8d3;
+    margin:10px;
+    padding:20px;
+}

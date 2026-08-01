@@ -1,0 +1,54 @@
+{% extends 'templates/homeapp/base.html' %}
+
+{% block title %}About | Fahim Abrar{% endblock %}
+
+{% block content %}
+<!-- About section that highlights Fahim's full-stack skills -->
+<section class="about-section">
+  <div class="glass-panel about-panel">
+    <div class="about-grid">
+      <div class="about-copy">
+        <span class="hero-badge">Fahim Abrar — software developer</span>
+        <h1 class="about-title">I work across frontend and backend to build thoughtful web experiences.</h1>
+        <p class="about-text">From user-focused UI to scalable backend services, I create web applications that are polished, reliable, and easy to maintain.</p>
+        <div class="hero-actions">
+          <a href="/" class="button button-secondary">Back to home</a>
+          <a href="#values" class="button button-primary">See strengths</a>
+        </div>
+      </div>
+      <div class="about-visual">
+        <div class="hero-blob blob-left"></div>
+        <div class="hero-blob blob-right"></div>
+        <div class="hero-inner about-inner">
+          <div class="glass-card about-card">
+            <h2>Approach</h2>
+            <p>Thoughtful UI design plus efficient Django templates create strong, maintainable apps.</p>
+          </div>
+          <div class="glass-card about-card">
+            <h2>Design goal</h2>
+            <p>Every page should feel coherent, easy to scan, and delightful on both desktop and mobile.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Values and strengths section -->
+<section id="values" class="info-section">
+  <div class="feature-grid-three">
+    <article class="glass-card feature-block">
+      <h3>Transparency</h3>
+      <p>Clear visual hierarchy keeps content readable and the layout easy to understand.</p>
+    </article>
+    <article class="glass-card feature-block">
+      <h3>Performance</h3>
+      <p>Simple CSS and minimal JavaScript keep loading times lean and behavior fast.</p>
+    </article>
+    <article class="glass-card feature-block">
+      <h3>Polish</h3>
+      <p>Glass panels, subtle blur, and soft gradients add premium visual detail without excess.</p>
+    </article>
+  </div>
+</section>
+{% endblock %}

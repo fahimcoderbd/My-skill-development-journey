@@ -1,0 +1,27 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+/* html,body{
+    height:100%;
+} */
+
+html{
+    height:100%;
+}
+
+body{
+    height:inherit;
+}
+
+.parent-div{
+    background-color:#4a6fff;
+    color:white;
+    width:92%;
+    height:100%;
+    margin:20px auto;
+    padding:2%;
+    border-radius:25px;
+    /* max-width:1140px; */
+}

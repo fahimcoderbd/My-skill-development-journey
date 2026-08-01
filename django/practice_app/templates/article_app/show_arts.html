@@ -1,0 +1,162 @@
+{% extends "article_app/base.html" %}
+
+{% block title %}All Articles{% endblock %}
+
+{% block main %}
+<div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+
+    <!-- Header -->
+    <div class="p-6 border-b border-gray-200 bg-gray-50">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+
+            <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <i class="fa-solid fa-list-ul text-indigo-600"></i>
+                All Articles -> <span class="text-purple-500 text-large text-2xl">Total {{data.count}}</span>
+            </h3>
+
+            <form method="GET" action="/article/search/" class="flex gap-2 w-full lg:w-auto">
+                <input
+                    type="text"
+                    name="query"
+                    placeholder="Search article..."
+                    class="flex-1 lg:w-72 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    required>
+
+                <button
+                    type="submit"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+            </form>
+
+        </div>
+
+        <!-- Filters -->
+        <div class="mt-5 flex flex-wrap gap-2">
+
+            <button
+                onclick="window.location.href='/article/filter1/'"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm">
+                Find Article 2s
+            </button>
+
+            <button
+                onclick="window.location.href='/article/filter2/'"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm">
+                Author: Fahim Abrar Niloy
+            </button>
+
+            <button
+                onclick="window.location.href='/article/filter3/'"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm">
+                2026
+            </button>
+
+            <button
+                onclick="window.location.href='/article/filter4/'"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm">
+                Without Title
+            </button>
+
+            <button
+                onclick="window.location.href='/article/filter5/'"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm">
+                Chain Email Filter
+            </button>
+
+            <button
+                onclick="window.location.href='/article/filter6/'"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm">
+                IExact Title
+            </button>
+
+             <button
+                onclick="window.location.href='/article/filter7/'"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm">
+                 Title using suffix
+            </button>
+
+            <button
+                onclick="window.location.href='/article/show_articles/'"
+                class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg text-sm">
+                Show All
+            </button>
+
+            <a
+                href="{% url 'create_article' %}"
+                class="ml-auto bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg text-sm flex items-center gap-2">
+                <i class="fa-solid fa-plus"></i>
+                New Article
+            </a>
+
+        </div>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto">
+        <table class="w-full">
+            <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
+                <tr>
+                    <th class="px-6 py-4 text-left">ID</th>
+                    <th class="px-6 py-4 text-left">Title</th>
+                    <th class="px-6 py-4 text-left">Created Date</th>
+                    <th class="px-6 py-4 text-center">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200">
+
+                {% for article in data %}
+                <tr class="hover:bg-gray-50">
+
+                    <td class="px-6 py-4">
+                        <span class="bg-gray-100 px-3 py-1 rounded text-sm">
+                            #{{ article.id }}
+                        </span>
+                    </td>
+
+                    <td class="px-6 py-4 font-medium">
+                        {{ article.title }}
+                    </td>
+
+                    <td class="px-6 py-4 text-gray-500">
+                        {{ article.created_at|date:"M d, Y" }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center gap-2">
+
+                            <a
+                                href="{% url 'update_article' article.id %}"
+                                class="bg-indigo-100 text-indigo-600 hover:bg-indigo-200 p-2 rounded">
+                                <i class="fa-solid fa-pen"></i>
+                            </a>
+
+                            <a
+                                href="{% url 'delete_article' article.id %}"
+                                class="bg-red-100 text-red-600 hover:bg-red-200 p-2 rounded">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+
+                        </div>
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+                    <td colspan="4" class="py-12 text-center text-gray-500">
+                        <i class="fa-regular fa-folder-open text-4xl mb-3 block"></i>
+                        No Articles Found
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

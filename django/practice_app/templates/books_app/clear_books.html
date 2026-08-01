@@ -1,0 +1,63 @@
+{% extends 'books_app/base.html' %}
+
+{% block title %}clear Books{% endblock %}
+
+{% block main %}
+<div class="max-w-4xl mx-auto mt-10">
+
+    <div class="bg-white shadow-xl rounded-2xl p-8 border">
+
+        <h1 class="text-3xl font-bold text-center text-red-600 mb-8">
+            🗑 Clear All Books
+        </h1>
+
+        {% if books %}
+
+            <div class="space-y-5">
+
+                {% for book in books %}
+
+                <div class="bg-gray-50 border rounded-xl p-5 hover:shadow-md transition">
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <input type="hidden" name="book" value="{{ book.id }}">
+
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+                            <!-- Book Title -->
+                            <div class="flex-1">
+                                <h2 class="text-xl font-semibold text-gray-800">
+                                    📚 {{ book.name }}
+                                </h2>
+                            </div>
+
+                            <!-- Button -->
+                            <div>
+                                <button
+                                    type="submit"
+                                    class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">
+                                    clear book
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+            <p class="text-center text-gray-500">No books available to clear.</p>
+        {% endif %}
+
+    </div>
+
+
+{%endblock%}

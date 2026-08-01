@@ -1,0 +1,38 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+h1{
+    color:white;
+    background-color:black;
+    text-align:center;
+    font-size:40px;
+    font-family:cursive , 'san-serif';
+}
+
+table{
+    margin:30px auto;
+    border-collapse: collapse;
+    width:60%;
+    background:royalblue;
+    color:white;
+    border-radius:20px;
+}
+
+tr{
+    height:50px;
+    animation: ease-in 2s;
+}
+
+td{
+    text-align:center;
+}
+
+th,td{
+    padding:10px;
+}
+
+tr:hover{
+background-color:black;
+}

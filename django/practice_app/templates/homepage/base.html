@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Apps homepage{% endblock %}</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body class=" text-gray-900 font-sans min-h-screen flex flex-col" style="background-color:skyblue;">
+
+    <nav class="bg-black shadow-sm border-b border-gray-200 py-4 px-6">
+        <h2 class="text-lg font-semibold text-white">Practice App</h2>
+    </nav>
+
+    <main class="flex-grow container mx-auto px-4 py-12">
+        {% block main %}
+        {% endblock %}
+    </main>
+
+</body>
+</html>

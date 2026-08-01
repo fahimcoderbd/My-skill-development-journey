@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--form events-->
+    <!--this is used to work with html forms-->
+    
+    <!--submit event-->
+    <!--when a user clicks a button or enter it will 
+    trigger-->
+    <!--it is used to check or validate user's data-->
+
+    <form id="form1">
+        <input type="text" placeholder="Enter you name: ">
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        //getting the form
+        document.getElementById('form1').addEventListener("submit" ,function(event){
+          event.preventDefault(); //it will stop reloading
+          alert("Form submitted successfully!")
+        });
+    </script>
+</body>
+</html>

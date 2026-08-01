@@ -1,0 +1,21 @@
+a{
+    padding:12px 28px;
+    text-decoration:none;
+    border:none;
+    border-radius:10px;
+    /* CHANGED: Vibrant vibrant indigo for a clear call-to-action */
+    background:skyblue; 
+    color:black;
+    font-size:1rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+a:hover{
+    /* CHANGED: Inverts to a bright neon purple with white text on hover */
+    background-color:#6366F1;
+    color:#FFFFFF;
+    transform:scale(1.05);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+}

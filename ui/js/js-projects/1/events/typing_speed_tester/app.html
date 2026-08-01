@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Tester</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #000000, #1a1a1a);
+      color: #f5f5f5;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #typing {
+      background: #111;
+      border: 2px solid #444;
+      border-radius: 15px;
+      padding: 30px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0px 4px 15px rgba(255, 255, 255, 0.1);
+    }
+
+    #text {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #00eaff;
+      font-weight: bold;
+    }
+
+    #user_typing {
+      width: 90%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #555;
+      background: #222;
+      color: white;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    #user_typing::placeholder {
+      color: #999;
+    }
+
+    #output {
+      font-size: 16px;
+      margin: 10px 0;
+      font-weight: bold;
+      color: #0f0;
+    }
+
+    #reset {
+      background: #00eaff;
+      color: black;
+      padding: 10px 20px;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    #reset:hover {
+      background: #00bcd4;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    footer span {
+      color: #00eaff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="typing">
+    <p id="text">Welcome to Typing Tester!</p>
+    <input type="text" id="user_typing" placeholder="Start typing here..." autofocus>
+    <p id="output">Your result will appear here...</p>
+    <button id="reset">Restart</button>
+    <footer>🚀 Coded by <span>Fahim Abrar</span></footer>
+  </div>
+
+  <!--script for typing app-->
+  <script>
+    //demo sentences
+
+    const typings = [
+        "Hellow, welcome to myapp.",
+        "This app is build by Fahim Abrar.",
+        "Use my app to detect your typing."
+    ]
+
+    let startTime,endtime;
+    let currenttext = "";
+    
+    //getting html elements
+    const textel = document.getElementById('text');
+    const inputel = document.getElementById('user_typing');
+    const resultel = document.getElementById('output')
+    const resetbtn = document.getElementById('reset');
+
+    //load randome text
+    function loadtxt() {
+         currenttext = typings[Math.floor(Math.random() * typings.length)]
+    }
+  </script>
+</body>
+
+</html>

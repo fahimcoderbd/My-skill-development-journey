@@ -1,0 +1,15 @@
+body{
+    background-color:whitesmoke;
+}
+
+.container{
+    background-color:purple;
+    color:white;
+    text-align: center;
+    background-image:url("assets/bg.jpg");
+    background-size:125px 125px;
+    /*background-repeat: repeat-x;*/
+    background-repeat: no-repeat;
+    background-position:center right;
+    border-radius:30px;
+}

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Product app{% endblock %}</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            slate: {
+              950: '#0F172A',
+              900: '#0F172A',
+            }
+          },
+          animation: {
+            'fade-in':     'fadeIn 0.4s ease both',
+            'slide-up':    'slideUp 0.45s ease both',
+            'slide-right': 'slideRight 0.35s ease both',
+            'pulse-slow':  'pulse 3s cubic-bezier(0.4,0,0.6,1) infinite',
+          },
+          keyframes: {
+            fadeIn:    { from: { opacity: 0 },                     to: { opacity: 1 } },
+            slideUp:   { from: { opacity: 0, transform: 'translateY(18px)' }, to: { opacity: 1, transform: 'translateY(0)' } },
+            slideRight:{ from: { opacity: 0, transform: 'translateX(-18px)' }, to: { opacity: 1, transform: 'translateX(0)' } },
+          },
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Dot-grid atmospheric background */
+    body {
+      background-color: #0F172A;
+      background-image: radial-gradient(circle, #1e293b 1px, transparent 1px);
+      background-size: 28px 28px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Glowing sidebar accent */
+    .nav-link-active {
+      background: linear-gradient(90deg, rgba(99,102,241,0.25) 0%, rgba(99,102,241,0.05) 100%);
+      border-left: 3px solid #6366F1;
+      color: #a5b4fc;
+    }
+    .nav-link:not(.nav-link-active):hover {
+      background: rgba(255,255,255,0.05);
+      color: #e2e8f0;
+    }
+
+    /* Indigo glow on sidebar logo */
+    .logo-glow {
+      filter: drop-shadow(0 0 14px rgba(99,102,241,0.7));
+    }
+
+    /* Card hover lift */
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0F172A; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+
+    /* Toast animation */
+    @keyframes toastIn { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+    .toast { animation: toastIn 0.3s ease both; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; }
+    }
+  </style>
+
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body class="h-full text-slate-300 antialiased">
+
+  <!-- ── Layout wrapper ─────────────────────────────────────────── -->
+  <div class="flex h-screen overflow-hidden">
+
+    <!-- ── Sidebar ──────────────────────────────────────────────── -->
+    <aside id="sidebar"
+           class="flex flex-col w-64 shrink-0 bg-slate-900/80 backdrop-blur-xl border-r border-slate-800 animate-slide-right z-30">
+
+      <!-- Logo -->
+      <div class="flex items-center gap-3 px-6 py-6 border-b border-slate-800">
+        <div class="logo-glow w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm1 11H9v-2h2v2zm0-4H9V7h2v2z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="text-sm font-700 font-bold text-white leading-tight">Product app</p>
+          <p class="text-xs text-slate-500">Management Suite</p>
+        </div>
+      </div>
+
+      <!-- Nav -->
+      <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-1">
+
+        <p class="px-3 mb-2 text-xs font-semibold uppercase tracking-widest text-slate-600">Main</p>
+
+        <a href="/products"
+           class="nav-link {% if request.resolver_match.url_name == 'dashboard' %}nav-link-active{% endif %}
+                  flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 cursor-pointer">
+          <!-- Dashboard icon -->
+          <svg class="w-4.5 h-4.5 shrink-0 w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4"/>
+          </svg>
+          Dashboard
+        </a>
+
+        <a href="show_products/"
+           class="nav-link {% if request.resolver_match.url_name == 'products' %}nav-link-active{% endif %}
+                  flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 cursor-pointer">
+          <!-- Products icon -->
+          <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0v10l-8 4m0-14v14m-8-4l8 4"/>
+          </svg>
+          Products
+        </a>
+
+      </nav>
+
+      <!-- User card at bottom -->
+      <div class="px-3 py-4 border-t border-slate-800">
+        <div class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-white/5 transition cursor-pointer">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-sky-400 flex items-center justify-center text-xs font-bold text-white shrink-0">
+            {{ request.user.username|first|upper|default:"U" }}
+          </div>
+          <div class="min-w-0">
+            <p class="text-sm font-medium text-white truncate">{{ request.user.username|default:"Username" }}</p>
+            <p class="text-xs text-slate-500 truncate">{{ request.user.email|default:"user@example.com" }}</p>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+    <!-- /Sidebar -->
+
+    <!-- ── Main content area ─────────────────────────────────────── -->
+    <div class="flex flex-col flex-1 overflow-hidden">
+
+      <!-- Top header -->
+      <header class="shrink-0 flex items-center justify-between px-6 py-4 bg-slate-900/60 backdrop-blur border-b border-slate-800 animate-fade-in">
+
+        <!-- Mobile sidebar toggle -->
+        <button id="sidebarToggle" class="md:hidden text-slate-400 hover:text-white transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+
+        <!-- Page title (injected per page) -->
+        <h1 class="text-base font-semibold text-white">{% block page_title %}Dashboard{% endblock %}</h1>
+
+        <!-- Right actions -->
+        <div class="flex items-center gap-3">
+
+          <!-- Search -->
+          <div class="hidden sm:flex items-center gap-2 bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-400 w-52 focus-within:border-indigo-500 transition">
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/>
+            </svg>
+            <input type="text" placeholder="Search…" class="bg-transparent outline-none w-full text-slate-300 placeholder-slate-600" />
+          </div>
+
+          <!-- Notifications -->
+          <button class="relative p-2 rounded-lg text-slate-400 hover:bg-slate-800 hover:text-white transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14V11a6 6 0 10-12 0v3c0 .386-.146.735-.595 1.595L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+            </svg>
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-indigo-500 rounded-full ring-2 ring-slate-900"></span>
+          </button>
+
+        </div>
+      </header>
+
+      <!-- Django messages -->
+      {% if messages %}
+      <div class="px-6 pt-4 space-y-2 animate-fade-in">
+        {% for message in messages %}
+        <div class="toast flex items-center gap-3 px-4 py-3 rounded-xl border text-sm font-medium
+          {% if message.tags == 'success' %}bg-emerald-900/40 border-emerald-700 text-emerald-300
+          {% elif message.tags == 'error' %}bg-rose-900/40 border-rose-700 text-rose-300
+          {% elif message.tags == 'warning' %}bg-amber-900/40 border-amber-700 text-amber-300
+          {% else %}bg-sky-900/40 border-sky-700 text-sky-300{% endif %}">
+          <span>{{ message }}</span>
+          <button onclick="this.parentElement.remove()" class="ml-auto opacity-60 hover:opacity-100 transition">✕</button>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      <!-- Page content -->
+      <main class="flex-1 overflow-y-auto p-6">
+        {% block content %}{% endblock %}
+      </main>
+
+    </div>
+    <!-- /Main content area -->
+
+  </div>
+  <!-- /Layout wrapper -->
+
+  <!-- Mobile sidebar overlay -->
+  <div id="overlay" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-20 md:hidden" onclick="closeSidebar()"></div>
+
+  <!-- Base JS -->
+  <script>
+    const sidebar  = document.getElementById('sidebar');
+    const overlay  = document.getElementById('overlay');
+    const toggle   = document.getElementById('sidebarToggle');
+
+    function openSidebar()  { sidebar.classList.remove('-translate-x-full'); overlay.classList.remove('hidden'); }
+    function closeSidebar() { sidebar.classList.add('-translate-x-full');    overlay.classList.add('hidden'); }
+
+    if (toggle) toggle.addEventListener('click', openSidebar);
+
+    // Stagger child animations inside main
+    document.querySelectorAll('[data-stagger]').forEach((el, i) => {
+      el.style.animationDelay = `${i * 80}ms`;
+    });
+  </script>
+
+  {% block extra_js %}{% endblock %}
+
+</body>
+</html>

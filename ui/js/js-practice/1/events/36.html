@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keyboard Events</title>
+</head>
+<body>
+  <h2>Type something in the input:</h2>
+  <input type="text" id="myInput">
+  <p id="status"></p>
+
+  <script>
+    const input = document.getElementById("myInput");
+    const status = document.getElementById("status");
+
+    input.addEventListener("keydown", (event) => {
+      status.innerText = `You pressed: ${event.key}`;
+    });
+
+    input.addEventListener("keyup", (event) => {
+      status.innerText = `You released: ${event.key}`;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+{% extends 'books_app/base.html' %}
+
+{% block title %}Remove Books{% endblock %}
+
+{% block main %}
+
+<div class="max-w-4xl mx-auto mt-10">
+
+    <div class="bg-white shadow-xl rounded-2xl p-8 border">
+
+        <h1 class="text-3xl font-bold text-center text-red-600 mb-8">
+            🗑 Remove Author from Book
+        </h1>
+
+        {% if books %}
+
+            <div class="space-y-5">
+
+                {% for book in books %}
+
+                <div class="bg-gray-50 border rounded-xl p-5 hover:shadow-md transition">
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <input type="hidden" name="book" value="{{ book.id }}">
+
+                        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+
+                            <!-- Book Title -->
+                            <div class="flex-1">
+                                <h2 class="text-xl font-semibold text-gray-800">
+                                    📚 {{ book.name }}
+                                </h2>
+                            </div>
+
+                            <!-- Authors -->
+                            <div class="flex-1">
+                                <select
+                                    name="author"
+                                    class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-red-500">
+
+                                    {% for author in book.author.all %}
+                                        <option value="{{ author.id }}">
+                                            {{ author.name }}
+                                        </option>
+                                    {% empty %}
+                                        <option disabled>
+                                            No Author Assigned
+                                        </option>
+                                    {% endfor %}
+
+                                </select>
+                            </div>
+
+                            <!-- Button -->
+                            <div>
+                                <button
+                                    type="submit"
+                                    class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-lg transition">
+
+                                    Remove
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="text-center py-10">
+
+                <h2 class="text-2xl font-semibold text-gray-500">
+                    📚 No Books Available
+                </h2>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

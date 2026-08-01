@@ -1,0 +1,210 @@
+{% extends 'books_app/base.html' %}
+
+{% block title %}Replace book authors and in and it are niche a to market books{% endblock %}
+
+{% block main %}
+<section class="set-books-panel">
+  <div class="panel-header">
+    <p class="eyebrow">Book author replacement</p>
+    <h1>Replace book authors</h1>
+    <p class="subtitle">Choose a book by name and ID, select multiple authors, then update the author set in one clean action.</p>
+  </div>
+
+  <form method="post" class="replace-form">
+    {% csrf_token %}
+
+    <div class="field-group">
+      <label for="book-select">Book</label>
+      <select id="book-select" name="book" required>
+        {% for book in books %}
+          <option value="{{ book.id }}">{{ book.name }} (ID: {{ book.id }})</option>
+        {% empty %}
+          <option disabled>No books available</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="field-group">
+      <label for="author-select">Select authors</label>
+      <select id="author-select" name="author" multiple size="6">
+        {% for author in authors %}
+          <option value="{{ author.id }}">{{ author.name }}</option>
+        {% empty %}
+          <option disabled>No authors available</option>
+        {% endfor %}
+      </select>
+      <p class="hint">Hold Ctrl (Windows) or Command (Mac) to select multiple authors.</p>
+      <div id="selected-authors" class="selected-authors">
+        <span class="slot-hint">Selected authors will appear here.</span>
+      </div>
+    </div>
+
+    <div id="selected-author-inputs"></div>
+
+    <div class="actions-row">
+      <button type="submit" class="replace-button">Replace Authors</button>
+    </div>
+  </form>
+</section>
+
+<style>
+.set-books-panel {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px;
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+.panel-header {
+  margin-bottom: 28px;
+}
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #5b67d7;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #111827;
+}
+.subtitle {
+  margin-top: 12px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+.replace-form {
+  display: grid;
+  gap: 20px;
+}
+.field-group {
+  display: grid;
+  gap: 10px;
+}
+.field-group label {
+  font-weight: 600;
+  color: #111827;
+}
+.field-group select {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 16px;
+  background: #f9fafb;
+  font-size: 1rem;
+  color: #111827;
+}
+.field-group select:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+.hint {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+.actions-row {
+  display: flex;
+  justify-content: flex-end;
+}
+.replace-button {
+  min-width: 170px;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.replace-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(99, 102, 241, 0.22);
+}
+.selected-authors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: #f3f4f6;
+  border-radius: 12px;
+  min-height: 40px;
+}
+.author-slot {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: #5b67d7;
+  color: white;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+.author-slot button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const authorSelect = document.getElementById('author-select');
+  const selectedAuthorsDiv = document.getElementById('selected-authors');
+  const selectedAuthorInputs = document.getElementById('selected-author-inputs');
+  let selectedAuthors = {};
+
+  authorSelect.addEventListener('change', function() {
+    const selectedOptions = Array.from(authorSelect.selectedOptions);
+    selectedAuthors = {};
+    
+    selectedOptions.forEach(option => {
+      selectedAuthors[option.value] = option.text;
+    });
+    
+    updateDisplay();
+  });
+
+  function updateDisplay() {
+    selectedAuthorsDiv.innerHTML = '';
+    selectedAuthorInputs.innerHTML = '';
+    
+    if (Object.keys(selectedAuthors).length === 0) {
+      selectedAuthorsDiv.innerHTML = '<span class="slot-hint">Selected authors will appear here.</span>';
+      return;
+    }
+    
+    Object.entries(selectedAuthors).forEach(([id, name]) => {
+      const slot = document.createElement('div');
+      slot.className = 'author-slot';
+      slot.innerHTML = `${name} <button type="button" data-id="${id}">×</button>`;
+      selectedAuthorsDiv.appendChild(slot);
+      
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'author';
+      input.value = id;
+      selectedAuthorInputs.appendChild(input);
+      
+      slot.querySelector('button').addEventListener('click', function(e) {
+        e.preventDefault();
+        delete selectedAuthors[id];
+        authorSelect.value = Object.keys(selectedAuthors);
+        updateDisplay();
+      });
+    });
+  }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Generator</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Mulpication generator</h1>
+    <h2 style="text-align:center;">Coded by Fahim Abrar Niloy</h2>
+
+    <script>
+      // multiplication generator
+const num_in = parseInt(prompt("Enter the number to multiply: ")); // convert input to number
+const limit = parseInt(prompt("Enter the limit: ")); // how far to multiply
+
+// generator
+const generator = (num, limit) => {
+  for (let i = 1; i <= limit; i++) {
+    console.log(`${num} × ${i} = ${num * i}`);
+  }
+};
+
+// calling 
+generator(num_in, limit);
+    </script>
+</body>
+</html>

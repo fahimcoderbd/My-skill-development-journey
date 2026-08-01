@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>remove Example</title>
+</head>
+<body>
+  <div id="box">
+    <p id="msg">Hello, I will be removed!</p>
+  </div>
+
+  <button onclick="removeMsg()">Remove Message</button>
+
+  <script>
+    function removeMsg() {
+      let msg = document.getElementById("msg");
+      msg.remove(); // removes the <p>
+    }
+  </script>
+</body>
+</html>

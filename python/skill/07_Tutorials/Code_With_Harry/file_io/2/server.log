@@ -1,0 +1,5 @@
+Log-01: Server started successfully at 10:00 AM..
+Log-02: Connection established with DB Cluster-A.
+Log-03: Warning! High latency in region South-01.
+Log-04: Error! User authentication failed for ID..
+Log-05: System backup completed at 10:30 AM......

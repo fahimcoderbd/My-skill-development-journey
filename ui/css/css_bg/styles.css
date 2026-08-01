@@ -1,0 +1,15 @@
+body{
+    background-image:url("bg.jpg");
+    background-size:cover;
+}
+
+h1{
+    color:white;
+    text-align: center;
+}
+
+.text-1{
+    background-color:rgba(255, 127, 80, 0.445);
+    color:black;
+    text-align: center
+}

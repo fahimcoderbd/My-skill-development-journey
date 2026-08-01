@@ -1,0 +1,89 @@
+{% extends "article_app/base.html" %}
+
+{% block title %}Update Article{% endblock %}
+
+{% block main %}
+<div class="max-w-2xl mx-auto">
+    
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+        
+        <div class="bg-amber-50 px-8 py-5 border-b border-amber-100 flex items-center gap-3">
+            <i class="fa-solid fa-pen-to-square text-amber-600 text-xl"></i>
+            <h3 class="text-xl font-bold text-amber-900">Update Article</h3>
+        </div>
+
+        <div class="p-8">
+            <form method="POST" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+
+                <div>
+                    <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4 border-b pb-2">Article Details</h4>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Title</label>
+                        <input type="text" name="title" value="{{ data.title }}" placeholder="Enter an engaging title" 
+                               class="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-shadow">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                        <input type="text" name="category" value="{{ data.category }}" placeholder="e.g., Technology" 
+                               class="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Content</label>
+                        <textarea name="content"  rows="6" placeholder="Write your article here..." 
+                                  class="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">{{ data.content }}</textarea>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4 border-b pb-2">Author Information</h4>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Author Name</label>
+                        <input type="text" name="author_name" value="{{ data.author }}" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Author Email</label>
+                        <input type="email" name="author_email" value="{{ data.author_email }}" class="w-full rounded-lg border border-gray-300 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Author Image</label>
+                        <input type="file" name="author_image" accept="image/*" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                        {% if article.author_image %}
+                            <p class="text-xs text-gray-500 mt-1">Current: <a href="{{ data.author_image }}" target="_blank" class="text-indigo-600 underline">View Image</a></p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Document File</label>
+                        <input type="file" name="document_data" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100">
+                        {% if article.document_file %}
+                            <p class="text-xs text-gray-500 mt-1">Current: <a href="{{ article.document_file.url }}" target="_blank" class="text-indigo-600 underline">View File</a></p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-gray-100 flex items-center justify-between">
+                    <a href="{% url 'show_articles' %}" class="text-gray-600 bg-gray-100 hover:bg-gray-200 px-6 py-2.5 rounded-lg font-medium transition-colors">
+                        Cancel
+                    </a>
+                    <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-2.5 rounded-lg font-medium flex items-center gap-2 shadow-sm transition-colors">
+                        <i class="fa-solid fa-floppy-disk"></i> Save Changes
+                    </button>
+                </div>
+
+            </form>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

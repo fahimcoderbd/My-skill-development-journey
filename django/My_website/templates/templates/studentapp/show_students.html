@@ -1,0 +1,76 @@
+{% extends 'templates/studentapp/base.html' %}
+{% load static %}
+
+{% block title %}View Students - Student Management{% endblock %}
+
+{% block main %}
+<div class="page-header">
+    <h1 class="page-title">📋 Student List</h1>
+    <p class="page-subtitle">Manage and view all registered students</p>
+</div>
+
+{% if students %}
+    <div class="card">
+        <div class="flex-between mb-3">
+            <div>
+                <span class="text-small text-muted">Total Students: <strong>{{ students.count }}</strong></span>
+            </div>
+            <a href="/student/add_student" class="btn btn-primary">
+                ➕ Add New Student
+            </a>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Class</th>
+                        <th>Age</th>
+                        <th>Joined</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td class="font-bold">{{ student.name }}</td>
+                        <td>{{ student.email }}</td>
+                        <td>
+                            <span style="background-color: rgba(99, 102, 241, 0.1); padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.85rem;">
+                                Class {{ student.student_class_value }}
+                            </span>
+                        </td>
+                        <td>{{ student.age }} years</td>
+                        <td class="text-small text-muted">{{ student.created_at|date:"M d, Y" }}</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="/student/update_student/{{student.id}}" class="btn btn-sm btn-outline">
+                                    ✏️ Edit
+                                </a>
+                                <a href="/student/delete_student/{{student.id}}"class="btn btn-sm btn-danger">
+                                    🗑️ Delete
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% else %}
+    <div class="card">
+        <div class="empty-state">
+            <div class="empty-state-icon">📚</div>
+            <h3 class="empty-state-title">No Students Yet</h3>
+            <p class="text-muted mb-3">Get started by adding your first student</p>
+            <a href="/student/add_student" class="btn btn-primary btn-lg">
+                ➕ Add First Student
+            </a>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

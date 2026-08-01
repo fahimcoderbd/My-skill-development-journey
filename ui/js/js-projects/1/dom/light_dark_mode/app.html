@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Light/Dark Mode</title>
+  <style>
+    body {
+      transition: background 0.3s, color 0.3s;
+    }
+    .dark {
+      background: #222;
+      color: white;
+    }
+  </style>
+</head>
+<body id="body">
+  <h2>Light/Dark Mode</h2>
+  <button onclick="toggleMode()">Switch Mode</button>
+
+  <script>
+    function toggleMode() {
+      document.getElementById("body").classList.toggle("dark");
+    }
+  </script>
+</body>
+</html>

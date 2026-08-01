@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>appendChild + remove</title>
+</head>
+<body>
+  <div id="container"></div>
+  <button onclick="addBox()">Add Box</button>
+
+  <script>
+    function addBox() {
+      // create a new div
+      let box = document.createElement("div");
+      box.textContent = "I am a box. Click me to remove!";
+      box.style.padding = "10px";
+      box.style.margin = "5px";
+      box.style.background = "lightblue";
+      box.style.cursor = "pointer";
+
+      // add click event to remove it
+      box.addEventListener("click", function() {
+        box.remove();
+      });
+
+      // append into container
+      document.getElementById("container").appendChild(box);
+    }
+  </script>
+</body>
+</html>

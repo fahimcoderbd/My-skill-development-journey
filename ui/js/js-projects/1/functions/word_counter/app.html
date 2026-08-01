@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter</title>
+</head>
+<body>
+    <h1 style="text-align:center;">Word Counter</h1>
+
+    <script>
+        // Take user input using prompt
+        const text = prompt("Enter your text: ");
+
+        // Function to count words
+        const word_counter = (input) => {
+            // Trim to remove leading/trailing spaces
+            let trimmed = input.trim();
+
+            // Split by spaces, tabs, or newlines
+            let wordsArray = trimmed.split(/\s+/);
+
+            // If input is empty, return 0
+            if (trimmed === "") {
+                return 0;
+            }
+            
+            return wordsArray.length;
+        }
+
+        // Call the function
+        let count = word_counter(text);
+
+        // Show result on the page
+        document.write(`<h2 style="text-align:center;">Total Words: ${count}</h2>`);
+    </script>
+</body>
+</html>

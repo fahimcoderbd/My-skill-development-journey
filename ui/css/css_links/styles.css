@@ -1,0 +1,37 @@
+a{
+    color:black;
+    font-size:30px;
+    text-decoration:none; /* ami jokhon underline dekhte chai na */
+}
+
+a:hover{
+    color:blue;
+}
+
+a:visited{
+    color:green;
+}
+
+a:active{
+    color:red;
+    font-weight:bold;
+}
+
+a:focus{
+    color:blueviolet;
+    font-size:30px;
+    background-color:black;
+    border-radius:20px;
+}
+
+a.btn{
+    background-color:red;
+    color:white;
+    border-radius:20px;
+    padding:10px 25px;
+
+}
+
+a.btn:hover{
+    color:black;
+}

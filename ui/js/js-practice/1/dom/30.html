@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+</head>
+<body>
+    <!--appenchild()-->
+    <!--it inserts an element as the last child of parent!-->
+
+    <div id="container">
+     <h2>My List: </h2>
+     <ul id="list"></ul>
+    </div>
+
+    <button onclick="additem()">Add item</button>
+    <script>
+        const additem = () =>{
+            //creating a new element
+            let li = document.createElement("li");
+
+            //add some text inside it
+            li.textContent = "New list item";
+
+            //select the parent
+            let list = document.getElementById('list');
+
+            //append new li inside list
+            list.appendChild(li);
+
+            //printing li
+            console.log(li);
+        }
+    </script>
+</body>
+</html>
