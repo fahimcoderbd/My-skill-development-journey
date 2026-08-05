@@ -1,3 +1,6 @@
+import os
+from os import path
+
 class Student:
     def __init__(self, name:str, roll:int, marks:float):
         self.name = name #student's name
