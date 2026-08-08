@@ -1,5 +1,6 @@
 # Shopping Cart using Python
 # Coded by Fahim Abrar
+from typing import Any
 
 cart = [
     {
@@ -11,7 +12,14 @@ cart = [
          'name':"macbook",
          'product_id': 2,
          'price': 160000
-    } #demo product #demo product
+    },
+
+    {
+        'name':"watch",
+        'product_id': 3,
+        'price': 150
+   },
+
 
 ] #store carts
 
@@ -24,11 +32,10 @@ UI_COLORS = {
 
 #main ui helpers
 def set_color(color: str):
-    if color in UI_COLORS:
-        print(UI_COLORS[color], end="")
+    if color in UI_COLORS: print(UI_COLORS[color], end="")
 
 def show_error_msg(msg:str):
-    set_color("red")
+    set_color("red") 
     print(msg)
     set_color("white")
 
@@ -48,60 +55,68 @@ def search_product_menu():
      print("3.Search by price =>")
      print("\n")
 
+def show_empty_msg():
+    set_color("yellow")
+    print("Your cart is empty.")
+    set_color("white")
+
 def display_search_results(data):
-    #after search showing search results
+    if not data:
+        show_error_msg("Sorry, product not found!")
+        return
+
+    # after search showing search results
     banner_menu("Showing search results")
     print(f"Product name: {data['name']}")
     print(f"Product id: {data['product_id']}")
     print(f"Product price: {data['price']}")
 
-#logic helper functions
-def check_duplicated_id(product_id:int):
+def show_filter_results(arr):
+    if not arr:return 
+    for product in arr:
+        print(f"Product: {product['name']}")
+
+# logic helper functions
+def check_duplicated_id(product_id:int) -> bool:
     for product in cart:
         if product['product_id'] == product_id:
             return True
     return False
 
-#this will handle product searching feature
-def find_product(data:any, key_name:str): #data is the inut from user, key_name is the searching key
-    found = False
+# this will handle product searching feature
+def find_product(data:Any, key_name:str): # data is the input from user, key_name is the searching key
     for product in cart:
-        if product[key_name] == data.lower():
-           found = True
-           break 
-        if not found:
-            show_error_msg("Sorry, Product not found!")  
-    return product   
+        value = product[key_name]
+        if key_name == "name":
+            if isinstance(data, str) and value.lower() == data.lower():
+                return product
+        else:
+            if value == data:
+                return product
 
-#main logic functions
+    return None
+
+#basic feature logic functions
 def add_product():
     product_name = input("Enter product name: ")
     if not product_name:
-            set_color("red")
-            print("Fill required product name")
-            set_color("white")
+            show_error_msg("Fill required product name")
             return
     try:
         product_id = int(input("Enter your product id: (e.g: 1234)"))
 
         if check_duplicated_id(product_id):
-            set_color("red")
-            print("This id exists, try with new one")
-            set_color("white")
+            show_error_msg("This id exists, try with new one")
             return
         
         product_price = int(input("Enter product price: "))
 
         if product_id <= 0 or product_price <= 0:
-            set_color("red")
-            print("Invalid price and product id!")
-            set_color("white")
+            show_error_msg("Invalid price and product id!")
             return
 
     except ValueError:
-        set_color("red")
-        print("Invalid price!")
-        set_color("white")
+        show_error_msg("Invalid price")
         return
 
     product = {
@@ -147,36 +162,28 @@ def remove_product():
     try:
         set_color(color="green")
         cart_id = int(input("Enter cart name to delete: "))
+        found = False
         for product in cart:
             if product['product_id'] == cart_id:
+                found= True
                 cart.remove(product)
                 set_color(color="yellow")
                 print("Your product removed successfully!")
                 print("Current products")
                 show_cart()
                 break
+        if not found: show_error_msg("Sorry product not found")
             
 
     except ValueError:
         set_color(color="red")
         print("Give normal input!")
 
-def calculate_total():
-    total = 0
-    for product in cart:
-        total = sum(product['price'])
-    
-    set_color(color="yellow")
-    print(f"Your cart total is: {total}")
-    set_color(color="white")
-
-    return total
-
 def apply_discount():
      total_value = calculate_total()
      try:
          discount_value = int(input("Enter discount amount (%): "))
-         if discount_value > 100 or discount_value <= 0:
+         if discount_value <= 0:
              set_color(color="red")
              print("This can't be accepted")
 
@@ -286,59 +293,76 @@ def search_product():
         set_color(color="red")
         print(f"Please give a valid input")
 
-
-# ===== MENU =====
-while True:
-
-    set_color("green")
-    banner_menu("Shopping cart app")
-
-    print("1. Add Product")
-    print("2. Remove Product")
-    print("3. Show Cart")
-    print("4. Calculate total")
-    print("5. Apply discount")
-    print("6. Update product")
-    print("7. Search product")
-    print("0. Exit")
-
-    set_color("white")
-
-    try:
-        set_color(color="yellow")
-        choice = int(input("Enter your choice: "))
-    except ValueError:
-        set_color("red")
-        print("Please enter a number.")
-        set_color("white")
-        continue
-
-    if choice == 1:
-        add_product()
-
-    elif choice == 2:
-        remove_product()
-
-    elif choice == 3:
-        show_cart()
+#calculation feature logic functions 
+def calculate_total():
+    total = 0
+    for product in cart:
+        total += product['price']
     
-    elif choice == 4:
-        calculate_total()
+    set_color(color="yellow")
+    print(f"Your cart total is: {total}")
+    set_color(color="white")
 
-    elif choice == 5:
-        apply_discount()
+    return total
 
-    elif choice == 6:
-        update_product()
+def calculate_average():
+      total_price = calculate_total()
+      cart_length = len(cart)
+      if cart_length > 0:
+         average = total_price / cart_length
+         return f"Your average product price is: {average:.2f}"
 
-    elif choice == 7:
-        search_product()
+def cheapest_product():
+    found = False
+    cheapest = cart[0]
+    for product in cart:
+        if product['price'] < cheapest['price']:
+           cheapest = product
+           found = True
 
-    elif choice == 0:
-        print("Goodbye 👋")
-        break
+    if not found:
+        show_error_msg("No product found!")
 
-    else:
-        set_color("red")
-        print("Invalid choice!")
-        set_color("white")
+    return f"Your cheapest product is: {cheapest['name']}, price: {cheapest['price']}"
+
+def expensive_product():
+    found = False
+    expensive_product = cart[0]
+    for product in cart:
+        if product['price'] > expensive_product['price']:
+            expensive_product = product 
+            found = True
+    if not found: show_error_msg("No product found!")
+
+    return (
+       f"Your expensive product: {expensive_product['name']} \n"
+       f"Your product id: {expensive_product['product_id']} \n"
+       f"Your product price: {expensive_product['price']}"
+    )
+
+#filtering feature logic functions
+def show_above_price(price:float):
+    if not price or price <= 0: show_error_msg("Price must be bigger than zero")
+    found = False
+    results = []
+
+    for product in cart:
+        if product['price'] > price: 
+           found = True
+           results.append(product)
+    if not found: show_error_msg("Products not found! Sorry")
+    return results
+
+def show_below_price(price:float):
+    if not price or price <= 0: show_error_msg("Price must be bigger than zero")
+    found = False
+    results = []
+
+    for product in cart:
+        if product['price'] < price: 
+           found = True
+           results.append(product)
+    if not found: show_error_msg("Products not found! Sorry")
+    return results
+ 
+
