@@ -11,5 +11,6 @@ urlpatterns = [
     path('clear_books/', views.clear_books, name='clear-books-from-authors'),
     path('all_books/', views.all_books, name='all-books-for-authors'),
     path('all_authors/',views.show_all_authors, name='showing-all-authors' ),
-    path('filter_author/',views.filtering_by_author_name, name='searching-author-by-name')
+    path('filter_author_by_name/',views.filtering_by_author_name, name='searching-author-by-name'),
+    path('filter_author_by_book', views.filtering_by_book_name, name='searching-author-by-book')
 ]

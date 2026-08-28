@@ -71,6 +71,7 @@ def display_search_results(data):
     print(f"Product id: {data['product_id']}")
     print(f"Product price: {data['price']}")
 
+
 def show_filter_results(arr):
     if not arr:return 
     for product in arr:
@@ -186,6 +187,7 @@ def apply_discount():
          if discount_value <= 0:
              set_color(color="red")
              print("This can't be accepted")
+             return
 
          final = total_value - (total_value * discount_value / 100)
 
@@ -293,6 +295,16 @@ def search_product():
         set_color(color="red")
         print(f"Please give a valid input")
 
+def show_sorted_results(product_data:dict):
+    if not product_data:
+        show_error_msg("No product found!")
+        return
+    return (
+        f"Name: {product_data['name']} \n" #product name
+        f"Id: {product_data['product_id']} \n"
+        f"Price: {product_data['price']}"
+    )
+
 #calculation feature logic functions 
 def calculate_total():
     total = 0
@@ -313,7 +325,6 @@ def calculate_average():
          return f"Your average product price is: {average:.2f}"
 
 def cheapest_product():
-    found = False
     cheapest = cart[0]
     for product in cart:
         if product['price'] < cheapest['price']:
@@ -365,4 +376,26 @@ def show_below_price(price:float):
     if not found: show_error_msg("Products not found! Sorry")
     return results
  
+#sorting feature logic functions
+def sort_product(key_data, sort_by):
+    product_cart = cart
+    if not product_cart:
+        return []
 
+    for product in product_cart:
+        if sort_by == "name":
+            if product['name'] == key_data:
+                return show_sorted_results(product)
+        elif sort_by == "product_id":
+            if product['product_id'] == key_data:
+                return show_sorted_results(product)
+        elif sort_by == "price":
+            if product['price'] == key_data:
+                return show_sorted_results(product)
+
+#total products in cart [statistics]
+def products_in_cart():
+    my_cart = cart
+    products_quantity = len(my_cart)
+    if not cart: return "No products in cart"
+    return f"Total {products_quantity} products in cart"

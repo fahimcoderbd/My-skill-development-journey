@@ -3,7 +3,8 @@ from cart import set_color, banner_menu #ui components
 from cart import (
     add_product, remove_product, show_cart, apply_discount, update_product,search_product, #basic features
     calculate_total,calculate_average,cheapest_product,expensive_product, #calculation features
-    show_above_price,show_below_price,show_filter_results #filtering features
+    show_above_price,show_below_price,show_filter_results, #filtering features
+    sort_product, display_search_results, products_in_cart#sorting features
 )
 
 def run_app():
@@ -35,6 +36,20 @@ def run_app():
     set_color(color="white")
     print("11. Show products above price")
     print("12. Show products below price")
+
+    print("=="*20)
+    set_color(color="yellow")
+    print("Sorting features =>")
+    set_color(color="white")
+    print("13. Sort products by name")
+    print("14. Sort products by price")
+    print("15. Sort products by id")
+
+    print("=="*20)
+    set_color(color="yellow")
+    print("statistics features =>")
+    set_color(color="white")
+    print("16. Total products in cart")
     print("0. Exit")
     set_color("white")
 
@@ -95,6 +110,48 @@ def run_app():
         banner_menu(f"Showing products below {price} \n")
         products = show_below_price(price)
         print(show_filter_results(products))
+
+    elif choice == 13:
+        set_color(color="green")
+        #taking name for sorting
+        set_color(color="yellow")
+        name = input("Enter name for sorting: ")
+        #showing sorting results
+        set_color(color="green")
+        print("Here is your results =>")
+        set_color(color="white")
+        print(sort_product(key_data=name, sort_by="name"))
+        
+
+    elif choice == 14:
+        set_color(color="green")
+        #taking name for sorting
+        set_color(color="yellow")
+        id = int(input("Enter id for sorting: "))
+         #showing sorting results
+        set_color(color="green")
+        print("Here is your results =>")
+        set_color(color="white")
+        print(sort_product(key_data=id, sort_by="product_id"))
+
+    elif choice == 15:
+        set_color(color="green")
+        #taking name for sorting
+        set_color(color="yellow")
+        price= float(input("Enter price for sorting: "))
+        #showing sorting results
+        set_color(color="green")
+        print("Here is your results =>")
+        set_color(color="white")
+        print(sort_product(key_data=price, sort_by="price"))
+
+    elif choice == 16:
+        set_color(color="green")
+        print("=="*20)
+        print("Statistics")
+        print("=="*20)
+        set_color(color="white")
+        print(products_in_cart())
 
     elif choice == 0:
         print("Goodbye 👋")

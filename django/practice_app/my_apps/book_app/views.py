@@ -13,7 +13,8 @@ app_routes = {
     "all_op": "all_books",
     #filtering and searching route
     "show_authors":"all_authors",
-    "filter_author_data":"filter_author"
+    "filter_author1":"filter_author_by_name",
+    "filter_author2":"filter_author_by_book"
 }
 
 
@@ -204,6 +205,26 @@ def filtering_by_author_name(request):
         {
             "author": author_qs,
         },
+    )
+
+def filtering_by_book_name(request):
+    #get book name from user
+    book_name = request.POST.get('book')
+
+     # default to empty queryset to avoid referencing an undefined variable
+    book_qs = Book.objects.none()
+    
+    if book_name:
+        # use icontains for a more flexible match
+        book_qs = Book.objects.filter(name__iexact=author_name)
+            if author_qs.exists():
+                messages.success(request, "Author data fetched successfully!")
+            else:
+                messages.info(request, "No authors matched the given name.")
+
+    return handle_rendering(
+           request,
+                "books_app/filtering_queries/filter_author_by_book.html",
     )
 
 
