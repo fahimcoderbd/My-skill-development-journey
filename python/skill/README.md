@@ -38,77 +38,87 @@
 ```
 skill/
 ├── 01_Basics/
-│   ├── loop/
-│   │   ├── for_loop/
-│   │   └── (loop exercises)
-│   └── conditionals/
+│   ├── functions/
+│   │   ├── args_kwargs/
+│   │   ├── lambda_function/
+│   │   ├── practice/
+│   │   └── (utility scripts)
+│   ├── logical_operator/
+│   ├── loops/
+│   │   └── for_loop/
+│   └── variables_and_types/
 │
-├── 02_Functions/
-│   ├── built_in_func.py
-│   ├── lambda_function/
-│   ├── args_kwargs/
-│   └── practice/
-│
-├── 03_File_Handling/
-│   ├── read_notes.py
-│   ├── write_file.py
-│   ├── append_notes.py
-│   └── practice/
-│
-├── 04_Error_Handling/
-│   ├── 1.py - 6.py (exceptions examples)
-│   └── practice/
-│
-├── 05_OOP/
-│   ├── 1.py - 6.py (OOP concepts)
-│   └── practice/
-│
-├── 06_Data_Structures/
+├── 02_Data_Structures/
+│   ├── arrays/
+│   │   ├── easy/
+│   │   │   ├── practice/ (two_pointer, binary_search, real_world)
+│   │   │   └── (algorithms & problem solutions)
+│   │   ├── mid/
+│   │   └── projects/
+│   │       ├── shopping_cart/
+│   │       ├── todo_app/
+│   │       └── todo_list/
 │   ├── lists/
+│   │   ├── copy_arr/
+│   │   ├── insert_arr/
+│   │   ├── sort_arr/
+│   │   ├── list_comprehension/
+│   │   │   ├── practice_1/
+│   │   │   ├── practice_2/
+│   │   │   └── practice_3/
+│   │   └── practice/ (easy, mid)
 │   ├── sets/
+│   ├── tuples/
 │   ├── dictionaries/
-│   └── tuples/
+│   └── linkedlist/
 │
-├── 07_JSON_Data/
-│   ├── json_parsing/
-│   ├── json_tasks/
-│   └── practice/
+├── 03_Intermediate/
+│   ├── Error_Handling/
+│   │   └── practice/
+│   ├── File_Handling/
+│   │   └── practice/
+│   ├── JSON_Handling/
+│   │   ├── 01_task_filter/
+│   │   ├── 02_user_profile/
+│   │   ├── 03_user_settings/
+│   │   └── 04_order_processing/
+│   └── OOP/
+│       └── practice/
 │
-├── 08_Decorators/
-│   ├── decorators.py
-│   ├── decorators_2.py
-│   └── practice/
+├── 04_Advanced/
+│   ├── Async_Await/
+│   │   └── practice/
+│   ├── Context_Managers/
+│   ├── database/
+│   │   └── sqlite3/
+│   ├── Decorators/
+│   │   └── practice/
+│   ├── Generators_and_Iterators/
+│   └── Multi_threading/
 │
-├── 09_Generators_Iterators/
-│   ├── generators/
-│   ├── iterator/
-│   └── practice/
+├── 05_Algorithms_and_Problem_Solving/
+│   ├── LeetCode/
+│   │   ├── array/
+│   │   └── string/
+│   └── Toph/
+│       └── beginners/
 │
-├── 10_Context_Managers/
-│   ├── file_logger.py
-│   ├── error_handler.py
-│   ├── context_manager/
-│   └── practice/
+├── 06_Projects/
+│   ├── list_comprehension_lambda/
+│   │   ├── e-commerce_cart/
+│   │   ├── employee_salary_system/
+│   │   ├── inventory_management/
+│   │   └── student_result_system/
+│   └── oop/
+│       └── intermediate/
+│           └── bank_management/
 │
-├── 11_Async_Await/
-│   ├── async_await/
-│   └── practice/
-│
-├── 12_Multi_Threading/
-│   ├── multi_threading/
-│   └── practice/
-│
-├── 13_Data_Analysis/
-│   ├── numpy/
-│   ├── pandas/
-│   └── practice/
-│
-├── DSA/ (Optional)
-│   ├── array/
-│   ├── leet_code/
-│   └── toph_co/
-│
-└── README.md
+└── 07_Tutorials/
+    └── Code_With_Harry/
+        ├── file_io/
+        ├── functions/
+        ├── local_global_var/
+        └── os_module/
 ```
 
 ---
@@ -117,20 +127,20 @@ skill/
 
 | Topic | Files/Folders | Difficulty | Status |
 |-------|---------------|-----------|--------|
-| Loops | `01_Basics/loop/` | Beginner | ✅ |
-| Functions | `02_Functions/` | Beginner | ✅ |
-| File Handling | `03_File_Handling/` | Beginner | ✅ |
-| Error Handling | `04_Error_Handling/` | Beginner | ✅ |
-| OOP | `05_OOP/` | Intermediate | ✅ |
-| Data Structures | `06_Data_Structures/` | Intermediate | ✅ |
-| JSON Handling | `07_JSON_Data/` | Intermediate | ✅ |
-| Decorators | `08_Decorators/` | Advanced | 📝 |
-| Generators & Iterators | `09_Generators_Iterators/` | Advanced | 📝 |
-| Context Managers | `10_Context_Managers/` | Advanced | 📝 |
-| Async/Await | `11_Async_Await/` | Advanced | 📝 |
-| Multi-Threading | `12_Multi_Threading/` | Advanced | 📝 |
-| Data Analysis | `13_Data_Analysis/` | Advanced | 📝 |
-| DSA & Algorithms | `DSA/` | Varies | 📝 |
+| Basics & Loops | `01_Basics/` | Beginner | ✅ |
+| Functions & Lambdas | `01_Basics/functions/` | Beginner | ✅ |
+| Arrays & DSA Projects | `02_Data_Structures/arrays/` | Beginner – Mid | ✅ |
+| Lists & Comprehensions | `02_Data_Structures/lists/` | Beginner – Mid | ✅ |
+| Sets & Tuples | `02_Data_Structures/sets/`, `tuples/` | Beginner | ✅ |
+| Dictionaries & Linked Lists | `02_Data_Structures/dictionaries/`, `linkedlist/` | Intermediate | ✅ |
+| Error Handling | `03_Intermediate/Error_Handling/` | Intermediate | ✅ |
+| File Handling | `03_Intermediate/File_Handling/` | Intermediate | ✅ |
+| JSON Handling | `03_Intermediate/JSON_Handling/` | Intermediate | ✅ |
+| OOP | `03_Intermediate/OOP/` | Intermediate | ✅ |
+| Advanced Python | `04_Advanced/` | Advanced | ✅ |
+| Problem Solving (LeetCode, Toph) | `05_Algorithms_and_Problem_Solving/` | All Levels | ✅ |
+| Application Projects | `06_Projects/` | Intermediate | ✅ |
+| Video Tutorials Code | `07_Tutorials/` | All Levels | ✅ |
 
 ---
 
@@ -159,13 +169,13 @@ Examples এবং use-cases সব আছে
 ## 🔧 Key Resources
 
 ### Built-in Functions
-- Located in: `02_Functions/built_in_func.py`
+- Located in: `01_Basics/functions/built_in_func.py`
 - Topics: enumerate, map, filter, zip, etc.
 
 ### Important Patterns
-- **File Operations**: `03_File_Handling/`
-- **Exception Handling**: `04_Error_Handling/`
-- **Lambda Functions**: `02_Functions/lambda_function/`
+- **File Operations**: `03_Intermediate/File_Handling/`
+- **Exception Handling**: `03_Intermediate/Error_Handling/`
+- **Lambda Functions**: `01_Basics/functions/lambda_function/`
 
 ### Advanced Techniques
 - **Decorators**: Caching, logging, timing
